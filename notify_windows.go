@@ -7,7 +7,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/ncruces/zenity/internal/zenutil"
+	"github.com/rocketdt/zenity/internal/zenutil"
 )
 
 var (

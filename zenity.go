@@ -14,7 +14,7 @@ import (
 	"context"
 	"image/color"
 
-	"github.com/ncruces/zenity/internal/zenutil"
+	"github.com/rocketdt/zenity/internal/zenutil"
 )
 
 func stringPtr(s string) *string { return &s }

@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/ncruces/zenity/internal/zenutil"
+	"github.com/rocketdt/zenity/internal/zenutil"
 )
 
 func password(opts options) (string, string, error) {

@@ -1,4 +1,4 @@
-module github.com/ncruces/zenity
+module github.com/rocketdt/zenity
 
 go 1.16
 

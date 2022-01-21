@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ncruces/zenity"
+	"github.com/rocketdt/zenity"
 	"go.uber.org/goleak"
 )
 

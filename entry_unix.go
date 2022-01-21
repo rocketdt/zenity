@@ -3,7 +3,7 @@
 package zenity
 
 import (
-	"github.com/ncruces/zenity/internal/zenutil"
+	"github.com/rocketdt/zenity/internal/zenutil"
 )
 
 func entry(text string, opts options) (string, error) {
