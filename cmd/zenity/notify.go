@@ -8,8 +8,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ncruces/zenity"
-	"github.com/ncruces/zenity/internal/zenutil"
+	"github.com/rocketdt/zenity"
+	"github.com/rocketdt/zenity/internal/zenutil"
 )
 
 func notify(opts ...zenity.Option) error {

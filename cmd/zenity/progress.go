@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ncruces/zenity"
+	"github.com/rocketdt/zenity"
 )
 
 func progress(opts ...zenity.Option) (err error) {
