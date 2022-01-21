@@ -42,6 +42,8 @@ func message(kind messageKind, text string, opts options) error {
 		}
 	}
 
+	flags |= 0x1000 // MB_SYSTEMMODAL
+
 	defer setup()()
 
 	if opts.ctx != nil || opts.okLabel != nil || opts.cancelLabel != nil || opts.extraButton != nil {
