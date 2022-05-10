@@ -4,7 +4,7 @@ import (
 	"github.com/rocketdt/zenity/internal/zenutil"
 )
 
-func message(kind messageKind, text string, opts options) error {
+func message(kind messageKind, text string, timeout int, opts options) error {
 	var data zenutil.Dialog
 	data.Text = text
 	data.Options.Timeout = zenutil.Timeout

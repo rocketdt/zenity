@@ -4,32 +4,32 @@ package zenity
 //
 // Valid options: Title, Width, Height, OKLabel, CancelLabel, ExtraButton,
 // Icon, NoWrap, Ellipsize, DefaultCancel.
-func Question(text string, options ...Option) error {
-	return message(questionKind, text, applyOptions(options))
+func Question(text string, timeout int, options ...Option) error {
+	return message(questionKind, text, timeout, applyOptions(options))
 }
 
 // Info displays the info dialog.
 //
 // Valid options: Title, Width, Height, OKLabel, ExtraButton, Icon,
 // NoWrap, Ellipsize.
-func Info(text string, options ...Option) error {
-	return message(infoKind, text, applyOptions(options))
+func Info(text string, timeout int, options ...Option) error {
+	return message(infoKind, text, timeout, applyOptions(options))
 }
 
 // Warning displays the warning dialog.
 //
 // Valid options: Title, Width, Height, OKLabel, ExtraButton, Icon,
 // NoWrap, Ellipsize.
-func Warning(text string, options ...Option) error {
-	return message(warningKind, text, applyOptions(options))
+func Warning(text string, timeout int, options ...Option) error {
+	return message(warningKind, text, timeout, applyOptions(options))
 }
 
 // Error displays the error dialog.
 //
 // Valid options: Title, Width, Height, OKLabel, ExtraButton, Icon,
 // NoWrap, Ellipsize.
-func Error(text string, options ...Option) error {
-	return message(errorKind, text, applyOptions(options))
+func Error(text string, timeout int, options ...Option) error {
+	return message(errorKind, text, timeout, applyOptions(options))
 }
 
 type messageKind int

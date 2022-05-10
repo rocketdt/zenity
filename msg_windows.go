@@ -7,13 +7,14 @@ import (
 )
 
 var (
-	messageBox   = user32.NewProc("MessageBoxW")
-	getDlgCtrlID = user32.NewProc("GetDlgCtrlID")
+	messageBoxTimeout = user32.NewProc("MessageBoxTimeoutW")
+	messageBox 	  = user32.NewProc("MessageBoxW")
+	getDlgCtrlID 	  = user32.NewProc("GetDlgCtrlID")
 )
 
-func message(kind messageKind, text string, opts options) error {
+func message(kind messageKind, text string, timeout int, opts options) error {
 	var flags uintptr
-
+	
 	switch {
 	case kind == questionKind && opts.extraButton != nil:
 		flags |= 0x3 // MB_YESNOCANCEL
@@ -59,20 +60,40 @@ func message(kind messageKind, text string, opts options) error {
 		title = syscall.StringToUTF16Ptr(*opts.title)
 	}
 
-	s, _, err := messageBox.Call(0, strptr(text), uintptr(unsafe.Pointer(title)), flags)
+	if timeout <= 0 {
 
-	if opts.ctx != nil && opts.ctx.Err() != nil {
-		return opts.ctx.Err()
-	}
-	switch s {
-	case 1, 6: // IDOK, IDYES
-		return nil
-	case 2: // IDCANCEL
-		return ErrCanceled
-	case 7: // IDNO
-		return ErrExtraButton
-	default:
-		return err
+		s, _, err := messageBox.Call(0, strptr(text), uintptr(unsafe.Pointer(title)), flags)
+
+		if opts.ctx != nil && opts.ctx.Err() != nil {
+			return opts.ctx.Err()
+		}
+		switch s {
+		case 1, 6: // IDOK, IDYES
+			return nil
+		case 2: // IDCANCEL
+			return ErrCanceled
+		case 7: // IDNO
+			return ErrExtraButton
+		default:
+			return err
+		}
+	} else {
+
+		s, _, err := messageBoxTimeout.Call(0, strptr(text), uintptr(unsafe.Pointer(title)), flags, 0, uintptr(timeout))
+
+		if opts.ctx != nil && opts.ctx.Err() != nil {
+			return opts.ctx.Err()
+		}
+		switch s {
+		case 1, 6: // IDOK, IDYES
+			return nil
+		case 2: // IDCANCEL
+			return ErrCanceled
+		case 7: // IDNO
+			return ErrExtraButton
+		default:
+			return err
+		}
 	}
 }
 

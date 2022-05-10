@@ -6,7 +6,7 @@ import (
 	"github.com/rocketdt/zenity/internal/zenutil"
 )
 
-func message(kind messageKind, text string, opts options) error {
+func message(kind messageKind, text string, timeout int, opts options) error {
 	args := []string{"--text", text, "--no-markup"}
 	switch kind {
 	case questionKind:
